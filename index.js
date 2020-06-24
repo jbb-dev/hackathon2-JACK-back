@@ -1,19 +1,19 @@
-const express = require('express');
-const models = require('./models'); 
-const app = express();
-const port = 3000;
-const cors = require('cors');
-
-app.use(cors())
-app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}));
+const express = require('express')
+const app = express()
+const models = require('./models')
+const bodyParser = require('body-parser')
+const port = 3001
 
 
-app.get('/', (req, res) => {
-  res.send('WELCOME IN THE JACK TEAM !')
-})
+app.use(bodyParser.urlencoded({
+    extended : true
+}))
+
+
+require('./routes/user')(app)
+require('./routes/children')(app)
+require('./routes/document')(app)
+require('./routes/demand')(app)
 
 
 models
